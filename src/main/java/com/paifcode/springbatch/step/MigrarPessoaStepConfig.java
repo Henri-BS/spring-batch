@@ -13,7 +13,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class MigrarPessoaStepConfig {
 
-    @Autowired
     private StepBuilder stepBuilder;
 
     @Autowired

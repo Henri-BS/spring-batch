@@ -13,7 +13,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class MigrarDadosBancariosStepConfig {
 
-    @Autowired
     private StepBuilder stepBuilder;
 
     @Autowired
