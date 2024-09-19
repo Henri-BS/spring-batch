@@ -18,7 +18,7 @@ public class BancoPessoaWriterConfig {
 
     @Bean
     public JdbcBatchItemWriter<Pessoa> bancoPessoaWriter(
-            @Qualifier("appDataSource") DataSource dataSource) {
+             DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Pessoa>()
                 .dataSource(dataSource)
                 .sql("INSERT INTO pessoa (id, nome, email, data_nascimento, idade) VALUES (?, ?, ?, ?, ?)")

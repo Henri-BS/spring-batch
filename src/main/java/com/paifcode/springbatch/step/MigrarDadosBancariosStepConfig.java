@@ -24,7 +24,7 @@ public class MigrarDadosBancariosStepConfig {
             ItemWriter<DadosBancarios> bancoDadosBancariosWriter) {
 
         return stepBuilder
-                .<DadosBancarios, DadosBancarios>chunk(1, transactionManager)
+                .<DadosBancarios, DadosBancarios>chunk(10000, transactionManager)
                 .reader(arquivoDadosBancariosReader)
                 .writer(bancoDadosBancariosWriter)
                 .build();

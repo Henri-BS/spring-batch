@@ -28,7 +28,7 @@ public class MigrarPessoaStepConfig {
             {
 
         return stepBuilder
-                .<Pessoa, Pessoa>chunk(1, transactionManager)
+                .<Pessoa, Pessoa>chunk(10000, transactionManager)
                 .reader(arquivoPessoaReader)
                 .writer(pessoaClassifierWriter)
                 .stream(arquivoPessoasInvalidasWriter)
