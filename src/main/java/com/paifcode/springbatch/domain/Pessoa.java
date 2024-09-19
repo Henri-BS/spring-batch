@@ -1,5 +1,7 @@
 package com.paifcode.springbatch.domain;
 
+import io.micrometer.common.util.StringUtils;
+
 import java.util.Date;
 
 public class Pessoa {
@@ -50,5 +52,9 @@ public class Pessoa {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public boolean isValida() {
+        return !StringUtils.isBlank(nome) && !StringUtils.isBlank(email) && dataNascimento != null;
     }
 }

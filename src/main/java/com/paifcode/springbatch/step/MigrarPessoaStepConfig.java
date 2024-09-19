@@ -5,6 +5,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,13 +23,15 @@ public class MigrarPessoaStepConfig {
     @Bean
     public Step migrarPessoaStep(
             ItemReader<Pessoa> arquivoPessoaReader,
-            ItemWriter<Pessoa> bancoPessoaWriter) {
+            ClassifierCompositeItemWriter<Pessoa> pessoaClassifierWriter,
+            FlatFileItemWriter<Pessoa> arquivoPessoasInvalidasWriter)
+            {
 
         return stepBuilder
                 .<Pessoa, Pessoa>chunk(1, transactionManager)
                 .reader(arquivoPessoaReader)
-                .writer(bancoPessoaWriter)
+                .writer(pessoaClassifierWriter)
+                .stream(arquivoPessoasInvalidasWriter)
                 .build();
-
     }
 }
